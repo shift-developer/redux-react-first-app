@@ -1,24 +1,40 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Page from './page';
 
 class Results extends Component {
-  render() {
-    return(
-      <Page />
-    )
-  }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+        };
+
+        this.goTo = this.goTo.bind(this);
+    }
+
+    goTo(path) {
+        this.props.history.push(path);
+    }
+
+    render() {
+        const {
+            results,
+        } = this.props;
+
+        return (
+            <Page
+                results={results}
+                goTo={this.goTo}
+            />
+        );
+    }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    suggestions: state.suggestions
-  }
-} //este estado viene de los reducers
+const mapStateToProps = state => ({
+    results: state.results,
+});
 
-export default connect(mapStateToProps)(Results);
-
-/*
-index.js es el componente contenedor y tine la lógica
-page.js es el componente presentacional con toda la UI
- */
+export default withRouter(
+    connect(mapStateToProps)(Results)
+);

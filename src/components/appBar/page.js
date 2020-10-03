@@ -1,34 +1,37 @@
 import React from 'react';
-import { AppBar } from '@material-ui/core';
-import { Toolbar } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import CodeIcon from '@material-ui/icons/Code';
-import AutoComplete from '../autocomplete/';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Autocomplete from '../autocomplete';
 import './styles.css';
 
-const Page = (props) => {
-  const {
-    text,
-    suggestions,
-    onChangeText,
-    onChangeSelection
-  } = props;
-  return(
-    <AppBar position="static">
-      <Toolbar className="appBar">
-        <Typography variant="h6" color="inherit">
-          <CodeIcon/>
-        </Typography>
-        <AutoComplete 
-          text={text} 
-          suggestions={suggestions}
-          onChangeText={onChangeText}
-          onChangeSelection={onChangeSelection}/>
-        <AccountCircleIcon />
-      </Toolbar>
-    </AppBar>
-  )
+function Page(props) {
+    const {
+        text,
+        suggestions,
+        onChangeText,
+        onChangeSelection,
+    } = props;
+
+    return (
+        <AppBar position="static">
+            <Toolbar className="appbar">
+                <Typography variant="h6" color="inherit">
+                    RR
+                </Typography>
+
+                <Autocomplete
+                    text={text}
+                    suggestions={suggestions}
+                    onChangeText={onChangeText}
+                    onChangeSelection={onChangeSelection}
+                />
+
+                <AccountCircle />
+            </Toolbar>
+        </AppBar>
+    );
 }
 
 export default Page;
